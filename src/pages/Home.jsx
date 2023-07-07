@@ -27,8 +27,7 @@ const Home = () => {
                   <PizzaBlock key={item.id} {...item}/>
                ))
                :
-               new Array(6).fill('').map(_ => <PizzaSkeleton/>)
-
+               new Array(6).fill('').map((_,i) => < PizzaSkeleton key={i}/>)
             }
 
          </div>

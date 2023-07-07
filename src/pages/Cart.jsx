@@ -1,6 +1,9 @@
 import React from 'react';
+import {Link, useNavigate} from "react-router-dom";
 
 const Cart = () => {
+const navigation = useNavigate();
+   const goBack = () => navigation(-1)
    return (
       <div className="container container--cart">
          <div className="cart">
@@ -99,13 +102,13 @@ const Cart = () => {
                   <span> Order price: <b>900 $</b> </span>
                </div>
                <div className="cart__bottom-buttons">
-                  <a href="/" className="button button--outline button--add go-back-btn">
+                  <button onClick={goBack}  className="button button--outline button--add go-back-btn">
                      <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M7 13L1 6.93015L6.86175 1" stroke="#D3D3D3" strokeWidth="1.5"
                               strokeLinecap="round" strokeLinejoin="round"/>
                      </svg>
-                     <span>Come back</span>
-                  </a>
+                     <span >Come back</span>
+                  </button>
                   <div className="button pay-btn">
                      <span>Pay now</span>
                   </div>
