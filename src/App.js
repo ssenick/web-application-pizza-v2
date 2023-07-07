@@ -1,4 +1,4 @@
-import {Header, Footer, PizzaBlock, Categories, Sort} from "./components";
+import {Header, Footer, Categories, Sort, PizzaBlock} from "./components";
 import './scss/app.scss'
 import {useEffect, useState} from "react";
 

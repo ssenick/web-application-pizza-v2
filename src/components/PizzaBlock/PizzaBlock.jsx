@@ -1,23 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {content} from "../../constants/content";
+import classNames from "classnames";
 
-const pizza = ({name,imageUrl,price}) => {
+const PizzaBlock = ({name, imageUrl, price, types, sizes}) => {
+   const [activeType, setActiveType] = useState(types[0]);
+   const [activeSize, setActiveSize] = useState(sizes[0]);
+
    return (
       <div className="pizza-block">
          <img
             className="pizza-block__image"
-            src= {imageUrl}
+            src={imageUrl}
             alt="Pizza"
          />
          <h4 className="pizza-block__title">{name}</h4>
          <div className="pizza-block__selector">
             <ul>
-               <li className="active">тонкое</li>
-               <li>традиционное</li>
+               {content.availableTypes.map((item, index) =>
+                  <li className={classNames({
+                     'active': activeType === index,
+                     'disabled': !types.includes(index)
+                  })} key={item}>{content.availableTypes[index]}</li>
+               )}
+
             </ul>
             <ul>
-               <li className="active">26 sm.</li>
-               <li>30 см.</li>
-               <li>40 см.</li>
+               {content.availableSizes.map((size,index) =>
+                  <li className={classNames({
+                     'active': activeSize === index,
+                  })} key={size}>{size} sm.</li>
+               )}
             </ul>
          </div>
          <div className="pizza-block__bottom">
@@ -43,4 +55,4 @@ const pizza = ({name,imageUrl,price}) => {
    );
 };
 
-export default pizza;
+export default PizzaBlock;
