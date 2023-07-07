@@ -3,7 +3,7 @@ import {content} from "../constants/content";
 
 const Sort = () => {
    const [isActive, setIsActive] = useState(0);
-   const [isToggle,setIsToggle] = useState(true);
+   const [isToggle,setIsToggle] = useState(false);
 
 
    const onClick = (index) => {
@@ -12,7 +12,7 @@ const Sort = () => {
    }
    return (
       <div className="sort">
-         <div className="sort__label">
+         <div className={isToggle ? 'sort__label active' : 'sort__label'} >
             <svg
                width="10"
                height="6"

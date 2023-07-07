@@ -6,6 +6,12 @@ const PizzaBlock = ({name, imageUrl, price, types, sizes}) => {
    const [activeType, setActiveType] = useState(types[0]);
    const [activeSize, setActiveSize] = useState(sizes[0]);
 
+   const onClickType = (i) => {
+      setActiveType(i)
+   }
+   const onClickSize = (size) => {
+      setActiveSize(size)
+   }
    return (
       <div className="pizza-block">
          <img
@@ -17,7 +23,7 @@ const PizzaBlock = ({name, imageUrl, price, types, sizes}) => {
          <div className="pizza-block__selector">
             <ul>
                {content.availableTypes.map((item, index) =>
-                  <li className={classNames({
+                  <li onClick={()=>onClickType(index)} className={classNames({
                      'active': activeType === index,
                      'disabled': !types.includes(index)
                   })} key={item}>{content.availableTypes[index]}</li>
@@ -26,8 +32,9 @@ const PizzaBlock = ({name, imageUrl, price, types, sizes}) => {
             </ul>
             <ul>
                {content.availableSizes.map((size,index) =>
-                  <li className={classNames({
-                     'active': activeSize === index,
+                  <li onClick={()=> onClickSize(size)} className={classNames({
+                     'active': activeSize === size,
+                     'disabled': !sizes.includes(size)
                   })} key={size}>{size} sm.</li>
                )}
             </ul>

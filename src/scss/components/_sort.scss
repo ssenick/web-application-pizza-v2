@@ -2,12 +2,20 @@
 
 .sort {
   position: relative;
+
   &__label {
     display: flex;
     align-items: center;
 
+    &.active {
+      svg {
+        transform: rotate(0deg);
+      }
+    }
+
     svg {
       margin-right: 8px;
+      transform: rotate(-180deg);
     }
 
     b {
@@ -34,6 +42,7 @@
 
     ul {
       overflow: hidden;
+
       li {
         padding: 12px 20px;
         cursor: pointer;
