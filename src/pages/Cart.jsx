@@ -107,7 +107,7 @@ const navigation = useNavigate();
                         <path d="M7 13L1 6.93015L6.86175 1" stroke="#D3D3D3" strokeWidth="1.5"
                               strokeLinecap="round" strokeLinejoin="round"/>
                      </svg>
-                     <span >Come back</span>
+                     <span>Come back</span>
                   </button>
                   <div className="button pay-btn">
                      <span>Pay now</span>
