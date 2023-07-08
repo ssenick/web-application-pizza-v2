@@ -4,6 +4,7 @@ import PizzaSkeleton from "../components/PizzaBlock/PizzaSkeleton";
 import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPizzas} from "../API";
+import useDebounce from "../hooks/useDebounce";
 const Home = () => {
    const dispatch = useDispatch();
    const {categoriesId,sort} = useSelector((state) => state.filter)
@@ -11,7 +12,8 @@ const Home = () => {
    const [isError, setIsError] = useState('');
    const [pizzas, setPizzas] = useState([]);
    const searchValue = useSelector((state) => state.search.value);
-   console.log(searchValue)
+
+
    useEffect(() => {
       // axios.get('https://64a6157600c3559aa9c054f6.mockapi.io/items' )
       //    .then(res => setPizzas(res.data))
