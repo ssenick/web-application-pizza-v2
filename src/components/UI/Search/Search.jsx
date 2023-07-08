@@ -28,6 +28,7 @@ const Search = memo(() => {
 
    const cleaningValue = () => {
       dispatch(searchReducer(''))
+      setValue('')
       valueRef.current.focus()
    }
 
