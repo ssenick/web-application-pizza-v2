@@ -5,6 +5,7 @@ import {close, search} from "../../../assets/images";
 const Search = memo(() => {
    const [value,setValue] = useState('');
    const valueRef = useRef(null)
+   
 
    const onChange = ( e ) => {
       setValue(e.target.value)
