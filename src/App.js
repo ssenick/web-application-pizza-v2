@@ -3,6 +3,8 @@ import './scss/app.scss'
 import {Route, Routes, useLocation} from "react-router-dom";
 import {Home, Cart} from "./pages";
 
+
+
 function App() {
    return (
       <div className="App">

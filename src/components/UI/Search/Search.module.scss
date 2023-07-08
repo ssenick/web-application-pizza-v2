@@ -1,0 +1,35 @@
+.search{
+  position: relative;
+  flex: 1 1 auto;
+  .searchImg{
+    position: absolute;
+    left: 7px;
+    top: 50%;
+    transform: translate(0,-50%);
+    width: 17px;
+    height: 17px;
+    opacity: 0.3;
+  }
+  .input{
+    font-size: 16px;
+    color: #282828;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    min-height: 32px;
+    padding: 5px 28px;
+    transition: all 0.3s ease 0s;
+    width: 100%;
+    &:focus{
+      border: 1px solid rgba(0, 0, 0, 0.3);
+    }
+  }
+  .closeBtn{
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    right: 7px;
+    top: 50%;
+    transform: translate(0,-50%);
+    opacity: 0.3;
+  }
+}

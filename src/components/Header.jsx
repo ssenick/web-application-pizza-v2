@@ -1,6 +1,7 @@
 import React from 'react';
 import {pizzaLogo} from "../assets/images";
 import {Link} from "react-router-dom";
+import {Search} from "./index";
 
 const Header = () => {
    return (
@@ -49,6 +50,7 @@ const Header = () => {
                   <span>3</span>
                </Link>
             </div>
+
          </div>
       </div>
    );

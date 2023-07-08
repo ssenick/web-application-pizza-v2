@@ -1,17 +1,30 @@
-import React, {useState} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import {content} from "../constants/content";
+import {useDispatch} from "react-redux";
+import {sortReducer} from "../redux/slices/filterSlice";
 
-const Sort = () => {
-   const [isActive, setIsActive] = useState(0);
+const Sort = memo(({sort}) => {
+   const dispatch = useDispatch();
    const [isToggle,setIsToggle] = useState(false);
 
 
-   const onClick = (index) => {
-      setIsActive(index)
+   const onClick = (arr) => {
+      dispatch(sortReducer(arr))
       setIsToggle(false)
    }
+   const clickOutside = () => {
+      setIsToggle(false);
+   }
+   useEffect(()=> {
+      document.addEventListener('click', clickOutside)
+      return () => {
+         document.removeEventListener('click',clickOutside)
+      }
+   },[])
+
+   // {name:'popularity',type: 'rating', order:'desc'},
    return (
-      <div className="sort">
+      <div onClick={(e)=> e.stopPropagation()} className="sort">
          <div className={isToggle ? 'sort__label active' : 'sort__label'} >
             <svg
                width="10"
@@ -28,24 +41,24 @@ const Sort = () => {
             <b>Sort by:</b>
             <span
                onClick={() => setIsToggle(prev => !prev)}>
-               {content?.sortItems[isActive]?.name}
+               {sort.name}
             </span>
          </div>
          {isToggle &&
             <div className="sort__popup">
-            <ul>
-               {content?.sortItems.map((item,i) =>
-                  <li key={i}
-                      onClick={()=> onClick(i)}
-                       className={isActive === i ? 'active' : ''} >
-                     {item.name}
-                  </li>
-               )}
-            </ul>
-         </div>}
+               <ul>
+                  {content?.sortItems.map(item =>
+                     <li key={item.name}
+                         onClick={()=> onClick(item)}
+                         className={item.name === sort.name ? 'active' : ''} >
+                        {item.name}
+                     </li>
+                  )}
+               </ul>
+            </div>}
 
       </div>
    );
-};
+}) ;
 
 export default Sort;
