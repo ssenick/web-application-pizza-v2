@@ -1,5 +1,6 @@
 export const content = {
    categories: [
+      "All",
       "Meat",
       "Vegetarian",
       "Grill",

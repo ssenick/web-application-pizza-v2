@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
-   categoriesId: null,
+   categoriesId: 0,
    sort: {
       name: 'popularity',
       type: 'rating',

@@ -3,7 +3,7 @@ import {Categories, PizzaBlock, Search, Sort} from "../components";
 import PizzaSkeleton from "../components/PizzaBlock/PizzaSkeleton";
 import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
-
+import {fetchPizzas} from "../API";
 const Home = () => {
    const dispatch = useDispatch();
    const {categoriesId,sort} = useSelector((state) => state.filter)
@@ -12,11 +12,12 @@ const Home = () => {
    const [pizzas, setPizzas] = useState([]);
 
    useEffect(() => {
-      axios.get('https://64a6157600c3559aa9c054f6.mockapi.io/items' )
-         .then(res => setPizzas(res.data))
-         .catch(err => setIsError(err.message))
-         .finally(()=>setIsLoaded(true))
-   }, [])
+      // axios.get('https://64a6157600c3559aa9c054f6.mockapi.io/items' )
+      //    .then(res => setPizzas(res.data))
+      //    .catch(err => setIsError(err.message))
+      //    .finally(()=>setIsLoaded(true))
+      fetchPizzas(setPizzas,setIsError,setIsLoaded,sort,categoriesId)
+   }, [categoriesId,sort])
    return (
       <div className="container">
          <div className="content__top">

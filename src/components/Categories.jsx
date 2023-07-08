@@ -13,7 +13,6 @@ const Categories = memo(({categoriesId}) => {
    return (
       <div className="categories">
          <ul>
-            <li onClick={()=>setCategory(null)} className={categoriesId === null ? 'active' : ''}>All</li>
             {content?.categories.map((category, i) =>
                <li key={i}
                    onClick={() => setCategory(i)}
