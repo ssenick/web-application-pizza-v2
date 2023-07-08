@@ -10,14 +10,15 @@ const Home = () => {
    const [isLoaded, setIsLoaded] = useState(false);
    const [isError, setIsError] = useState('');
    const [pizzas, setPizzas] = useState([]);
-
+   const searchValue = useSelector((state) => state.search.value);
+   console.log(searchValue)
    useEffect(() => {
       // axios.get('https://64a6157600c3559aa9c054f6.mockapi.io/items' )
       //    .then(res => setPizzas(res.data))
       //    .catch(err => setIsError(err.message))
       //    .finally(()=>setIsLoaded(true))
-      fetchPizzas(setPizzas,setIsError,setIsLoaded,sort,categoriesId)
-   }, [categoriesId,sort])
+      fetchPizzas(setPizzas,setIsError,setIsLoaded,sort,categoriesId,searchValue)
+   }, [categoriesId,sort,searchValue])
    return (
       <div className="container">
          <div className="content__top">

@@ -9,7 +9,7 @@ const initialState = {
    },
 }
 
-export const counterSlice = createSlice({
+export const filterSlice = createSlice({
    name: 'filter',
    initialState,
    reducers: {
@@ -22,5 +22,5 @@ export const counterSlice = createSlice({
    },
 })
 
-export const {categoryReducer,sortReducer} = counterSlice.actions
-export default counterSlice.reducer
+export const {categoryReducer,sortReducer} = filterSlice.actions
+export default filterSlice.reducer

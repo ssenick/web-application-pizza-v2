@@ -1,23 +1,43 @@
 import React, {memo, useRef, useState} from 'react';
 import s from './Search.module.scss'
 import {close, search} from "../../../assets/images";
+import {useDispatch, useSelector} from "react-redux";
+import {searchReducer} from "../../../redux/slices/searchSlice";
 
 const Search = memo(() => {
-   const [value,setValue] = useState('');
+   const dispatch = useDispatch();
+   const value = useSelector((state) => state.search.value);
+   const [placeholder,setPlaceholder] = useState('Search...');
    const valueRef = useRef(null)
-   
 
-   const onChange = ( e ) => {
-      setValue(e.target.value)
+   const onChange = (e) => {
+      dispatch(searchReducer(e.target.value))
+
    }
-   const cleaningValue = () =>{
-      setValue('')
+   const removePlaceholder = ( ) => {
+      setPlaceholder('')
+   }
+   const addPlaceholder = () =>{
+      setPlaceholder('Search...')
+   }
+
+   const cleaningValue = () => {
+      dispatch(searchReducer(''))
       valueRef.current.focus()
    }
+
+
    return (
       <div className={s.search}>
          <img className={s.searchImg} src={search} alt="icon"/>
-         <input ref={valueRef} onChange={onChange} value={value} className={s.input} type="text"/>
+         <input ref={valueRef}
+                onBlur={addPlaceholder}
+                onFocus={removePlaceholder}
+                onChange={onChange}
+                value={value}
+                className={s.input}
+                type="text"
+                placeholder={placeholder}/>
          {value && <img onClick={cleaningValue} className={s.closeBtn} src={close} alt="icon"/>}
       </div>
    );
