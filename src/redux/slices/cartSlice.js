@@ -11,22 +11,29 @@ export const cartSlice = createSlice({
    initialState,
    reducers: {
       addPizzasReducer: (state, action) => {
-         const countItems = state.items.filter(item => item.id === action.payload.id)[0]
-         const countType = state.items.filter(item => item.typeActive === action.payload.typeActive)[0]
-         const countSize = state.items.filter(item => item.sizeActive === action.payload.sizeActive)[0]
-
-         if (countItems && !countType && !countSize) {
-            countItems.countItems += 1;
-
-            countItems.itemsPrices = countItems.price * countItems.countItems;
+         const countItems = state.items.filter(item => {
+            if (item.id === action.payload.id && item.typeActive === action.payload.typeActive && item.sizeActive === action.payload.sizeActive) {
+               return item
+            }
+         })
+         if (countItems.length > 0) {
+            countItems[0].countItems += 1;
+            countItems[0].itemsPrices = countItems[0].price * countItems[0].countItems;
          } else {
             state.items = [...state.items, action.payload]
          }
          state.totalPrice = state.totalPrice + action.payload.price
          state.totalItems += 1
+      },
+      clearAllPizzas: (state) => {
+
+         state.items = [];
+         state.totalPrice = 0;
+         state.totalItems = 0;
+
       }
    },
 })
 
-export const {addPizzasReducer} = cartSlice.actions
+export const {addPizzasReducer, clearAllPizzas} = cartSlice.actions
 export default cartSlice.reducer

@@ -12,7 +12,7 @@ const CartPizza = ({name,imageUrl,typeActive,sizeActive,countItems,itemsPrices})
          </div>
          <div className="cart__item-info">
             <h3>{name}</h3>
-            <p>{typeActive}, {sizeActive} sm.</p>
+            <p>{typeActive} dough, {sizeActive} sm.</p>
          </div>
          <div className="cart__item-count">
             <div className="button button--outline button--circle cart__item-count-minus">

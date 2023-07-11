@@ -1,13 +1,21 @@
 import React from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import CartPizza from "../components/CartPizza";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {clearAllPizzas} from "../redux/slices/cartSlice";
 
 const Cart = () => {
+   const dispatch = useDispatch();
    const {items, totalPrice, totalItems} = useSelector((state) => state.cart)
 
    const navigation = useNavigate();
    const goBack = () => navigation(-1)
+   const clearAllItems = () => {
+      if(confirm('Are you sure?')){
+         dispatch(clearAllPizzas())
+      }
+   }
+
    return (
       <div className="container container--cart">
          <div className="cart">
@@ -26,7 +34,7 @@ const Cart = () => {
                   </svg>
                   Cart
                </h2>
-               <div className="cart__clear">
+               <div onClick={clearAllItems} className="cart__clear">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                      <path d="M2.5 5H4.16667H17.5" stroke="#B6B6B6" strokeWidth="1.2" strokeLinecap="round"
                            strokeLinejoin="round"/>
