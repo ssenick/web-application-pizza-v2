@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {content} from "../../constants/content";
 import classNames from "classnames";
 import {useDispatch, useSelector} from "react-redux";
@@ -9,10 +9,8 @@ const PizzaBlock = ({id, name, imageUrl, price, types, sizes}) => {
    const {items} = useSelector((state) => state.cart)
    const [activeType, setActiveType] = useState(types[0]);
    const [activeSize, setActiveSize] = useState(sizes[0]);
-   const countItems = () => {
-      const allIdItems = items.find(item => item.id )
-   }
-
+   const count  = items.filter(item => item.id === id).reduce((acc, item) =>  item.countItems + acc,0)
+   
    const addItem = () => {
       const addPizza = {
          id,
@@ -25,7 +23,6 @@ const PizzaBlock = ({id, name, imageUrl, price, types, sizes}) => {
          itemsPrices: price,
       }
       dispatch(addPizzasReducer(addPizza))
-
    }
 
 
@@ -78,7 +75,7 @@ const PizzaBlock = ({id, name, imageUrl, price, types, sizes}) => {
                   />
                </svg>
                <span>Add</span>
-               <i>2</i>
+               {count > 0  && <i>{count}</i>}
             </div>
          </div>
       </div>
