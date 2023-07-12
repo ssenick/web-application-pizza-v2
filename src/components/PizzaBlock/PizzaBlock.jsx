@@ -1,13 +1,17 @@
 import React, {useState} from 'react';
 import {content} from "../../constants/content";
 import classNames from "classnames";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {addPizzasReducer} from "../../redux/slices/cartSlice";
 
 const PizzaBlock = ({id, name, imageUrl, price, types, sizes}) => {
    const dispatch = useDispatch();
+   const {items} = useSelector((state) => state.cart)
    const [activeType, setActiveType] = useState(types[0]);
    const [activeSize, setActiveSize] = useState(sizes[0]);
+   const countItems = () => {
+      const allIdItems = items.find(item => item.id )
+   }
 
    const addItem = () => {
       const addPizza = {
@@ -18,9 +22,10 @@ const PizzaBlock = ({id, name, imageUrl, price, types, sizes}) => {
          typeActive: content.availableTypes[activeType],
          sizeActive: activeSize,
          countItems: 1,
-         itemsPrices: price
+         itemsPrices: price,
       }
       dispatch(addPizzasReducer(addPizza))
+
    }
 
 

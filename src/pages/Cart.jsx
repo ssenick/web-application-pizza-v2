@@ -6,13 +6,16 @@ import {clearAllPizzas} from "../redux/slices/cartSlice";
 
 const Cart = () => {
    const dispatch = useDispatch();
+   const navigation = useNavigate();
    const {items, totalPrice, totalItems} = useSelector((state) => state.cart)
 
-   const navigation = useNavigate();
+   console.log(items)
    const goBack = () => navigation(-1)
    const clearAllItems = () => {
-      if(confirm('Are you sure?')){
-         dispatch(clearAllPizzas())
+      if(items.length){
+         if(window.confirm('Are you sure?')){
+            dispatch(clearAllPizzas())
+         }
       }
    }
 
@@ -50,8 +53,8 @@ const Cart = () => {
                </div>
             </div>
             <div className="content__items">
-               {items && items.map(item =>
-                  <CartPizza key={item.id} {...item}/>
+               {items && items.map((item,index) =>
+                  <CartPizza key={index} {...item}/>
                )}
             </div>
             <div className="cart__bottom">
