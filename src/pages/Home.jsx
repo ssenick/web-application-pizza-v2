@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Categories, PizzaBlock, Search, Sort} from "../components";
-import PizzaSkeleton from "../components/PizzaBlock/PizzaSkeleton";
+import {Categories, PizzaBlock, Search, Sort,PizzaSkeleton} from "../components";
 import { useSelector} from "react-redux";
 import {fetchPizzas} from "../API";
 

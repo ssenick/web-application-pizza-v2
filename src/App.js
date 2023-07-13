@@ -1,23 +1,21 @@
-import {Header, Footer, Categories, Sort, PizzaBlock} from "./components";
 import './scss/app.scss'
-import {Route, Routes, useLocation} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import {Home, Cart} from "./pages";
+import Layout from "./Layout/Layout";
+import React from "react";
 
 
 
 function App() {
    return (
       <div className="App">
-         <div className="wrapper">
-            <Header/>
-            <div className="content">
-               <Routes>
-                  <Route index element={<Home/>}/>
-                  <Route path="/cart" element={<Cart/>}/>
-               </Routes>
-            </div>
-            <Footer/>
-         </div>
+         <Routes>
+            <Route path='/' element={<Layout/>}>
+               <Route index element={<Home/>}/>
+               <Route path="cart" element={<Cart/>}/>
+               <Route path="*" element={<Home/>}/>
+            </Route>
+         </Routes>
       </div>
    )
       ;

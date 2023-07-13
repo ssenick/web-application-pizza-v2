@@ -1,9 +1,8 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
-import CartPizza from "../components/cart/CartPizza";
+import {CartEmpty,CartPizza} from "../components";
 import {useDispatch, useSelector} from "react-redux";
 import {clearAllPizzas} from "../redux/slices/cartSlice";
-import CartEmpty from "../components/cart/CartEmpty";
 
 const Cart = () => {
    const dispatch = useDispatch();
