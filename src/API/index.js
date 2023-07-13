@@ -10,3 +10,7 @@ export const fetchPizzas = (setItems, setIsError, setIsLoaded, sort, categoryId,
       .catch(err => setIsError(err.message))
       .finally(() => setIsLoaded(true))
 }
+export const fetchPizza = async (id) => {
+  const response = await axios.get('https://64a6157600c3559aa9c054f6.mockapi.io/items/' + id )
+    return response
+}

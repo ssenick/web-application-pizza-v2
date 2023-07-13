@@ -3,8 +3,10 @@ import {content} from "../../constants/content";
 import classNames from "classnames";
 import {useDispatch, useSelector} from "react-redux";
 import {addPizzasReducer} from "../../redux/slices/cartSlice";
+import {Link} from "react-router-dom";
 
 const PizzaBlock = ({id, name, imageUrl, price, types, sizes}) => {
+
    const dispatch = useDispatch();
    const {items} = useSelector((state) => state.cart)
    const [activeType, setActiveType] = useState(types[0]);
@@ -33,13 +35,16 @@ const PizzaBlock = ({id, name, imageUrl, price, types, sizes}) => {
       setActiveSize(size)
    }
    return (
-      <div className="pizza-block">
-         <img
-            className="pizza-block__image"
-            src={imageUrl}
-            alt="Pizza"
-         />
-         <h4 className="pizza-block__title">{name}</h4>
+      <div  className="pizza-block">
+         <Link  to={`${id}`} className="pizza-block__link">
+            <img
+               className="pizza-block__image"
+               src={imageUrl}
+               alt="Pizza"
+            />
+            <h4 className="pizza-block__title">{name}</h4>
+         </Link>
+
          <div className="pizza-block__selector">
             <ul>
                {content.availableTypes.map((item, index) =>

@@ -1,0 +1,81 @@
+.itemPage {
+  .pizza-block {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+
+    &__image {
+      position: relative;
+      left: 7px;
+      width: 100%;
+    }
+
+    &__title {
+      font-size: 30px;
+      @media (max-width: 700px) {
+        font-size: 22px;
+      }
+    }
+
+    &__desc {
+      font-size: 16px;
+      line-height: 1.4;
+      margin-bottom: 15px;
+    }
+
+    &__selector {
+      display: flex;
+      background-color: #f3f3f3;
+      border-radius: 10px;
+      flex-direction: column;
+      padding: 10px;
+      @media (max-width: 700px) {
+        padding: 7px;
+      }
+
+      ul {
+        li {
+          padding: 12px;
+          font-size: 18px;
+          @media (max-width: 700px) {
+            font-size: 14px;
+          }
+
+          &:first-of-type {
+            margin-bottom: 10px;
+            @media (max-width: 700px) {
+              margin-bottom: 6px;
+            }
+          }
+        }
+      }
+    }
+
+    &__price {
+      font-size: 28px;
+      @media (max-width: 700px) {
+        font-size: 22px;
+      }
+    }
+
+    &__bottom {
+      margin-top: 25px;
+      align-items: center;
+    }
+
+    .button {
+      padding: 15px 25px;
+
+      span {
+        font-size: 22px;
+      }
+
+      @media (max-width: 700px) {
+        padding: 8px 15px;
+        span {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}

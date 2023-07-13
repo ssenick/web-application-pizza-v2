@@ -6,8 +6,10 @@
 
   display: flex;
   flex-direction: column;
-  
 
+  &__link{
+    flex: 1 1 auto;
+  }
   &__image {
     width: 260px;
     flex: 0 0 auto;
