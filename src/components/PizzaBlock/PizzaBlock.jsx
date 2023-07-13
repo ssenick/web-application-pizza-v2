@@ -10,7 +10,7 @@ const PizzaBlock = ({id, name, imageUrl, price, types, sizes}) => {
    const [activeType, setActiveType] = useState(types[0]);
    const [activeSize, setActiveSize] = useState(sizes[0]);
    const count  = items.filter(item => item.id === id).reduce((acc, item) =>  item.countItems + acc,0)
-   
+
    const addItem = () => {
       const addPizza = {
          id,

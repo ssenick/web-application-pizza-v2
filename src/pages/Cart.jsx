@@ -1,24 +1,26 @@
 import React from 'react';
-import {Link, useNavigate} from "react-router-dom";
-import CartPizza from "../components/CartPizza";
+import {useNavigate} from "react-router-dom";
+import CartPizza from "../components/cart/CartPizza";
 import {useDispatch, useSelector} from "react-redux";
 import {clearAllPizzas} from "../redux/slices/cartSlice";
+import CartEmpty from "../components/cart/CartEmpty";
 
 const Cart = () => {
    const dispatch = useDispatch();
    const navigation = useNavigate();
    const {items, totalPrice, totalItems} = useSelector((state) => state.cart)
 
-   console.log(items)
    const goBack = () => navigation(-1)
    const clearAllItems = () => {
-      if(items.length){
-         if(window.confirm('Are you sure?')){
+      if (items.length) {
+         if (window.confirm('Are you sure?')) {
             dispatch(clearAllPizzas())
          }
       }
    }
-
+   if (items.length === 0) {
+      return <CartEmpty/>
+   }
    return (
       <div className="container container--cart">
          <div className="cart">
@@ -53,7 +55,7 @@ const Cart = () => {
                </div>
             </div>
             <div className="content__items">
-               {items && items.map((item,index) =>
+               {items && items.map((item, index) =>
                   <CartPizza key={index} {...item}/>
                )}
             </div>

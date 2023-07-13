@@ -47,8 +47,7 @@ export const cartSlice = createSlice({
             state.totalItems--
             state.totalPrice = state.totalPrice - action.payload.price
          }
-         // state.totalPrice = state.totalPrice + action.payload.price
-         // state.totalItems++
+
       },
       plusCountPizza : (state, action) => {
          const countItems = state.items.find(item =>
