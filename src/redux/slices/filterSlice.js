@@ -22,9 +22,14 @@ export const filterSlice = createSlice({
       },
       searchReducer: (state,action) => {
          state.search = action.payload
+      },
+      setFilter: (state,action) =>{
+         state.categoriesId = Number(action.payload.categoriesId)
+         state.sort = action.payload.sort
+         state.search = action.payload.search
       }
    },
 })
 
-export const {categoryReducer,sortReducer,searchReducer} = filterSlice.actions
+export const {categoryReducer,sortReducer,searchReducer,setFilter} = filterSlice.actions
 export default filterSlice.reducer
