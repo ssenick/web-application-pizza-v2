@@ -8,14 +8,12 @@ import {searchReducer} from "../../../redux/slices/filterSlice";
 const Search = memo(() => {
    const dispatch = useDispatch();
    const [value,setValue] = useState('');
-   // const value = useSelector((state) => state.search.value);
    const [placeholder,setPlaceholder] = useState('Search...');
 
    const debouncedSearch = useDebounce(500)
    const valueRef = useRef(null)
 
    const onChange = (e) => {
-      // dispatch(searchReducer(e.target.value))
       setValue(e.target.value)
       debouncedSearch(searchReducer(e.target.value))
    }

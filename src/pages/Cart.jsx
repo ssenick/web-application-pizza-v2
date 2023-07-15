@@ -2,12 +2,12 @@ import React from 'react';
 import {useNavigate} from "react-router-dom";
 import {CartEmpty,CartPizza} from "../components";
 import {useDispatch, useSelector} from "react-redux";
-import {clearAllPizzas} from "../redux/slices/cartSlice";
+import {clearAllPizzas, selectCart} from "../redux/slices/cartSlice";
 
 const Cart = () => {
    const dispatch = useDispatch();
    const navigation = useNavigate();
-   const {items, totalPrice, totalItems} = useSelector((state) => state.cart)
+   const {items, totalPrice, totalItems} = useSelector(selectCart)
 
    const goBack = () => navigation(-1)
    const clearAllItems = () => {

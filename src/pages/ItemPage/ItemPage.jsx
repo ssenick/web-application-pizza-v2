@@ -5,14 +5,14 @@ import {fetchPizza} from "../../API";
 import {useFetching} from "../../hooks/useFetching";
 import {content} from "../../constants/content";
 import classNames from "classnames";
-import {addPizzasReducer} from "../../redux/slices/cartSlice";
+import {addPizzasReducer, selectCart} from "../../redux/slices/cartSlice";
 import {useDispatch, useSelector} from "react-redux";
 import ImagePageSkeleton from "./ImagePageSkeleton";
 
 const ItemPage = () => {
    const dispatch = useDispatch();
    const {id} = useParams();
-   const {items} = useSelector((state) => state.cart)
+   const {items} = useSelector(selectCart)
    const [item, setItem] = useState(undefined);
    const [activeType, setActiveType] = useState(0);
    const [activeSize, setActiveSize] = useState(0);

@@ -2,13 +2,13 @@ import React, {useState} from 'react';
 import {content} from "../../constants/content";
 import classNames from "classnames";
 import {useDispatch, useSelector} from "react-redux";
-import {addPizzasReducer} from "../../redux/slices/cartSlice";
+import {addPizzasReducer, selectCart} from "../../redux/slices/cartSlice";
 import {Link} from "react-router-dom";
 
 const PizzaBlock = ({id, name, imageUrl, price, types, sizes}) => {
 
    const dispatch = useDispatch();
-   const {items} = useSelector((state) => state.cart)
+   const {items} = useSelector(selectCart)
    const [activeType, setActiveType] = useState(types[0]);
    const [activeSize, setActiveSize] = useState(sizes[0]);
    const count  = items.filter(item => item.id === id).reduce((acc, item) =>  item.countItems + acc,0)
