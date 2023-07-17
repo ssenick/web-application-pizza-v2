@@ -1,13 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {content} from "../../constants/content";
+import React, {useState} from 'react';
+import {availableTypes,availableSizes} from "../../constants/content";
 import classNames from "classnames";
 import {useDispatch, useSelector} from "react-redux";
 import {addPizzasReducer, selectCart} from "../../redux/slices/cartSlice";
 import {Link} from "react-router-dom";
-import {fetchIndividualPizza} from "../../redux/slices/individualPizzaSlice";
 
 const PizzaBlock = ({id, name, imageUrl, price, types, sizes}) => {
-
    const dispatch = useDispatch();
    const {items} = useSelector(selectCart)
    const [activeType, setActiveType] = useState(types[0]);
@@ -20,7 +18,7 @@ const PizzaBlock = ({id, name, imageUrl, price, types, sizes}) => {
          name,
          imageUrl,
          price,
-         typeActive: content.availableTypes[activeType],
+         typeActive: availableTypes[activeType],
          sizeActive: activeSize,
          countItems: 1,
          itemsPrices: price,
@@ -47,16 +45,16 @@ const PizzaBlock = ({id, name, imageUrl, price, types, sizes}) => {
 
          <div className="pizza-block__selector">
             <ul>
-               {content.availableTypes.map((item, index) =>
+               {availableTypes.map((item, index) =>
                   <li onClick={() => onClickType(index)} className={classNames({
                      'active': activeType === index,
                      'disabled': !types.includes(index)
-                  })} key={item}>{content.availableTypes[index]}</li>
+                  })} key={item}>{availableTypes[index]}</li>
                )}
 
             </ul>
             <ul>
-               {content.availableSizes.map((size, index) =>
+               {availableSizes.map((size, index) =>
                   <li onClick={() => onClickSize(size)} className={classNames({
                      'active': activeSize === size,
                      'disabled': !sizes.includes(size)

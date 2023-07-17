@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {pizzaLogo} from "../assets/images";
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {selectCart} from "../redux/slices/cartSlice";
 
-const Header = () => {
+const Header:FC = () => {
    const { totalPrice, totalItems} = useSelector(selectCart)
    return (
       <div className="header">

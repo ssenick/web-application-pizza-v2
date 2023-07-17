@@ -1,5 +1,5 @@
 import React, {memo, useState} from 'react';
-import {content} from "../constants/content";
+import {categories} from "../constants/content";
 import {useDispatch} from "react-redux";
 import {categoryReducer} from "../redux/slices/filterSlice";
 
@@ -13,7 +13,7 @@ const Categories = memo(({categoriesId}) => {
    return (
       <div className="categories">
          <ul>
-            {content?.categories.map((category, i) =>
+            {categories.map((category, i) =>
                <li key={i}
                    onClick={() => setCategory(i)}
                    className={categoriesId === i ? 'active' : ''}>

@@ -1,14 +1,13 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './ItemPage.scss'
 import {useParams} from "react-router-dom";
 import {fetchPizza} from "../../API";
 import {useFetching} from "../../hooks/useFetching";
-import {content} from "../../constants/content";
+import {availableTypes,availableSizes} from '../../constants/content'
 import classNames from "classnames";
 import {addPizzasReducer, selectCart} from "../../redux/slices/cartSlice";
 import {useDispatch, useSelector} from "react-redux";
 import ImagePageSkeleton from "./ImagePageSkeleton";
-import {fetchIndividualPizza, selectIndividualPizza} from "../../redux/slices/individualPizzaSlice";
 
 const ItemPage = () => {
    const dispatch = useDispatch();
@@ -17,7 +16,6 @@ const ItemPage = () => {
    const [item, setItem] = useState(undefined);
    const [activeType, setActiveType] = useState(0);
    const [activeSize, setActiveSize] = useState(0);
-   const isLoaded = useRef(false)
 
    const count = items.filter(item => item.id === id).reduce((acc, item) => item.countItems + acc, 0)
    const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
@@ -37,7 +35,7 @@ const ItemPage = () => {
          name: item.name,
          imageUrl: item.imageUrl,
          price: item.price,
-         typeActive: content.availableTypes[activeType],
+         typeActive: availableTypes[activeType],
          sizeActive: activeSize,
          countItems: 1,
          itemsPrices: item.price,
@@ -71,16 +69,16 @@ const ItemPage = () => {
                      <p className='pizza-block__desc'>Description: {item.description}</p>
                      <div className="pizza-block__selector">
                         <ul>
-                           {content.availableTypes.map((type, index) =>
+                           {availableTypes.map((type, index) =>
                               <li onClick={() => onClickType(index)} className={classNames({
                                  'active': activeType === index,
                                  'disabled': !item.types.includes(index)
-                              })} key={type}>{content.availableTypes[index]}</li>
+                              })} key={type}>{availableTypes[index]}</li>
                            )}
 
                         </ul>
                         <ul>
-                           {content.availableSizes.map((size, index) =>
+                           {availableSizes.map((size, index) =>
                               <li onClick={() => onClickSize(size)} className={classNames({
                                  'active': activeSize === size,
                                  'disabled': !item.sizes.includes(size)

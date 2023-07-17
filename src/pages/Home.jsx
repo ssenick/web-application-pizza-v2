@@ -4,7 +4,7 @@ import {useSearchParams, useNavigate} from "react-router-dom";
 import qs from 'qs'
 import {Categories, PizzaBlock, Search, Sort, PizzaSkeleton} from "../components";
 import {selectFilter, setFilter} from "../redux/slices/filterSlice";
-import {content} from "../constants/content";
+import {sortItems} from '../constants/content'
 import {fetchPizzaItems, selectPizza} from "../redux/slices/pizzaSlice";
 
 
@@ -20,16 +20,14 @@ const Home = () => {
    const navigate = useNavigate()
    useEffect(() => {
       const parse = qs.parse(searchParams.toString())
-
       if (Object.keys(parse).length) {
          dispatch(setFilter({
             categoriesId: parse.categoriesId,
-            sort: content.sortItems.find(item => item.type === parse.sortType && item.order === parse.orderType),
+            sort: sortItems.find(item => item.type === parse.sortType && item.order === parse.orderType),
             search: parse.search,
          }))
          isSearching.current = true
       }
-
    }, [])
 
 

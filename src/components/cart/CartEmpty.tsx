@@ -2,6 +2,7 @@ import React from 'react';
 import {emptyCart} from '../../assets/images'
 import {Link} from "react-router-dom";
 
+
 const CartEmpty = () => {
    return (
       <div className="container">
