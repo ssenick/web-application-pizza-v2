@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {content} from "../../constants/content";
 import classNames from "classnames";
 import {useDispatch, useSelector} from "react-redux";
 import {addPizzasReducer, selectCart} from "../../redux/slices/cartSlice";
 import {Link} from "react-router-dom";
+import {fetchIndividualPizza} from "../../redux/slices/individualPizzaSlice";
 
 const PizzaBlock = ({id, name, imageUrl, price, types, sizes}) => {
 
@@ -26,7 +27,6 @@ const PizzaBlock = ({id, name, imageUrl, price, types, sizes}) => {
       }
       dispatch(addPizzasReducer(addPizza))
    }
-
 
    const onClickType = (i) => {
       setActiveType(i)

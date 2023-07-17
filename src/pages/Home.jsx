@@ -1,6 +1,6 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {useSearchParams, useNavigate, useParams} from "react-router-dom";
+import {useSearchParams, useNavigate} from "react-router-dom";
 import qs from 'qs'
 import {Categories, PizzaBlock, Search, Sort, PizzaSkeleton} from "../components";
 import {selectFilter, setFilter} from "../redux/slices/filterSlice";
@@ -17,9 +17,7 @@ const Home = () => {
    const orderType = sort.order;
    const isSearching = useRef(false)
    const isMounted = useRef(false)
-
    const navigate = useNavigate()
-
    useEffect(() => {
       const parse = qs.parse(searchParams.toString())
 
@@ -66,15 +64,15 @@ const Home = () => {
          </div>
          <h2 className="content__title">All pizzas</h2>
          <div className="content__items">
-            {status.name === 'success'
-               ?
+            {status.name === 'success' &&
                pizzas.map(item => (
                   <PizzaBlock key={item.id} {...item}/>
                ))
-               :
+            }
+            {status.name === 'loading' &&
                new Array(6).fill('').map((_, i) => < PizzaSkeleton key={i}/>)
             }
-            {pizzas.length === 0 && status.name === 'loading' &&
+            {pizzas.length === 0 && status.name === 'success' &&
                <h2>Nothing found <span>😕</span></h2>
             }
             {status.name === 'error' && <h2 style={{color: 'red', fontSize: '50px'}}>Ups.... Error: <span

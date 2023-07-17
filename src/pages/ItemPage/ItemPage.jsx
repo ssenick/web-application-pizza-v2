@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import  './ItemPage.scss'
+import './ItemPage.scss'
 import {useParams} from "react-router-dom";
 import {fetchPizza} from "../../API";
 import {useFetching} from "../../hooks/useFetching";
@@ -8,6 +8,7 @@ import classNames from "classnames";
 import {addPizzasReducer, selectCart} from "../../redux/slices/cartSlice";
 import {useDispatch, useSelector} from "react-redux";
 import ImagePageSkeleton from "./ImagePageSkeleton";
+import {fetchIndividualPizza, selectIndividualPizza} from "../../redux/slices/individualPizzaSlice";
 
 const ItemPage = () => {
    const dispatch = useDispatch();
@@ -16,20 +17,18 @@ const ItemPage = () => {
    const [item, setItem] = useState(undefined);
    const [activeType, setActiveType] = useState(0);
    const [activeSize, setActiveSize] = useState(0);
-
+   const isLoaded = useRef(false)
 
    const count = items.filter(item => item.id === id).reduce((acc, item) => item.countItems + acc, 0)
    const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
       const {data} = await fetchPizza(id);
       setItem(data)
-
       setActiveSize(data.sizes[0])
       setActiveType(data.types[0])
-
    });
 
    useEffect(() => {
-      fetchPosts()
+         fetchPosts()
    }, [])
 
    const addItem = () => {
@@ -56,11 +55,10 @@ const ItemPage = () => {
 
    return (
       <div className="container">
-         { isPostsLoading
+         {isPostsLoading
             ?
             <ImagePageSkeleton/>
             :
-
             <div className="itemPage">
                {item &&
                   <div className="pizza-block">
@@ -113,7 +111,8 @@ const ItemPage = () => {
                }
             </div>
          }
-
+         {postError && <h2 style={{color: 'red', fontSize: '50px'}}>Ups.... Error: <span
+            style={{fontWeight: '900'}}>{postError.message}</span></h2>}
       </div>
    );
 };
