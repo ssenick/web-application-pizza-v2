@@ -1,7 +1,7 @@
 import React, {memo, useRef, useState} from 'react';
 import s from './Search.module.scss'
 import {close, search} from "../../../assets/images";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import useDebounce from "../../../hooks/useDebounce";
 import {searchReducer} from "../../../redux/slices/filterSlice";
 
