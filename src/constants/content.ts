@@ -20,6 +20,8 @@
 
 
 
+import {SortType} from "../@types/Typs";
+
 export const categories: string[] = [
     "All",
     "Meat",
@@ -29,9 +31,7 @@ export const categories: string[] = [
     "Closed"
 ]
 
-export const sortItems: {
-    name: string, type: string, order: string
-}[] = [
+export const sortItems: SortType[] = [
     {name: 'popularity', type: 'rating', order: 'desc'},
     {name: 'price ↓', type: 'price', order: 'desc'},
     {name: 'price ↑', type: 'price', order: 'abc'},
