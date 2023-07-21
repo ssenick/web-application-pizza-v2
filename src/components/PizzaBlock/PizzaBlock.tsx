@@ -1,19 +1,24 @@
-import React, {useState} from 'react';
+import React, {FC, useState} from 'react';
 import {availableTypes,availableSizes} from "../../constants/content";
 import classNames from "classnames";
 import {useDispatch, useSelector} from "react-redux";
 import {addPizzasReducer, selectCart} from "../../redux/slices/cartSlice";
 import {Link} from "react-router-dom";
 
-const PizzaBlock = ({id, name, imageUrl, price, types, sizes}) => {
+
+interface PizzaBlockProps {
+   id : string, name:string, imageUrl:string, price:number, types:number[], sizes:number[]
+}
+
+const PizzaBlock:FC<PizzaBlockProps> = ({id, name, imageUrl, price, types, sizes}) => {
    const dispatch = useDispatch();
    const {items} = useSelector(selectCart)
-   const [activeType, setActiveType] = useState(types[0]);
-   const [activeSize, setActiveSize] = useState(sizes[0]);
+   const [activeType, setActiveType] = useState<number>(types[0]);
+   const [activeSize, setActiveSize] = useState<number>(sizes[0]);
    const count  = items.filter(item => item.id === id).reduce((acc, item) =>  item.countItems + acc,0)
 
    const addItem = () => {
-      const addPizza = {
+      const addPizza  = {
          id,
          name,
          imageUrl,
@@ -26,10 +31,10 @@ const PizzaBlock = ({id, name, imageUrl, price, types, sizes}) => {
       dispatch(addPizzasReducer(addPizza))
    }
 
-   const onClickType = (i) => {
+   const onClickType = (i:number) => {
       setActiveType(i)
    }
-   const onClickSize = (size) => {
+   const onClickSize = (size:number) => {
       setActiveSize(size)
    }
    return (
@@ -54,7 +59,7 @@ const PizzaBlock = ({id, name, imageUrl, price, types, sizes}) => {
 
             </ul>
             <ul>
-               {availableSizes.map((size, index) =>
+               {availableSizes.map((size) =>
                   <li onClick={() => onClickSize(size)} className={classNames({
                      'active': activeSize === size,
                      'disabled': !sizes.includes(size)

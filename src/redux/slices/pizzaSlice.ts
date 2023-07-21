@@ -8,7 +8,7 @@ export enum Status {
     SUCCESS = 'success',
     ERROR = 'error'
 }
-interface Pizza {
+export interface Pizza {
     pizzas: PizzaItem[],
     status: {
         name: Status,

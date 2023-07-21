@@ -3,7 +3,7 @@ import {RootState} from "../store";
 import {PizzaCartItem, PizzaCartItemAction} from "../../@types/Typs";
 
 
-interface CartSliceType {
+export interface CartSliceType {
    items:PizzaCartItem[],
    totalPrice: number,
    totalItems: number,

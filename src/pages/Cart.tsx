@@ -1,19 +1,20 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {useNavigate} from "react-router-dom";
 import {CartEmpty,CartPizza} from "../components";
 import {useDispatch, useSelector} from "react-redux";
-import {clearAllPizzas, selectCart} from "../redux/slices/cartSlice";
+import {CartSliceType, clearAllPizzas, selectCart} from "../redux/slices/cartSlice";
+import {RootState} from "../redux/store";
 
-const Cart = () => {
+const Cart:FC = () => {
    const dispatch = useDispatch();
    const navigation = useNavigate();
-   const {items, totalPrice, totalItems} = useSelector(selectCart)
+   const {items, totalPrice, totalItems} = useSelector<RootState,CartSliceType>(selectCart)
 
    const goBack = () => navigation(-1)
    const clearAllItems = () => {
       if (items.length) {
          if (window.confirm('Are you sure?')) {
-            dispatch(clearAllPizzas())
+            dispatch(clearAllPizzas({} as CartSliceType))
          }
       }
    }

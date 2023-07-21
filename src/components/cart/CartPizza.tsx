@@ -1,10 +1,11 @@
 import React, {FC} from 'react';
 import {useDispatch} from "react-redux";
 import {removeItemsGroup, minusCountPizza, plusCountPizza} from "../../redux/slices/cartSlice";
+import {PizzaCartItem} from "../../@types/Typs";
 
 
 
-const CartPizza = ({id, name, imageUrl, typeActive, sizeActive, countItems, price, itemsPrices}) => {
+const CartPizza:FC<PizzaCartItem> = ({id, name, imageUrl, typeActive, sizeActive, countItems, price, itemsPrices}) => {
     const dispatch = useDispatch();
     const nowItem =
         {id, typeActive, sizeActive, countItems, itemsPrices, price}

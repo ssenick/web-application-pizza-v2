@@ -42,4 +42,5 @@ export const filterSlice = createSlice({
 })
 export const selectFilter = (state: RootState) => state.filter
 export const {categoryReducer, sortReducer, searchReducer, setFilter} = filterSlice.actions
+
 export default filterSlice.reducer

@@ -30,6 +30,7 @@ export type  PizzaItem = {
      itemsPrices:number;
      price:number;
  }
+// id, name, imageUrl, price, types, sizes
 // id, typeActive, sizeActive, countItems, itemsPrices, price
 
 export type SortType = {

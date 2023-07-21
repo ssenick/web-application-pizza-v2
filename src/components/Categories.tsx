@@ -1,12 +1,16 @@
-import React, {memo, useState} from 'react';
+import React, {FC, memo, useState} from 'react';
 import {categories} from "../constants/content";
 import {useDispatch} from "react-redux";
 import {categoryReducer} from "../redux/slices/filterSlice";
 
-const Categories = memo(({categoriesId}) => {
+
+type CategoriesProps = {
+    categoriesId:number
+}
+const Categories:FC<CategoriesProps> = memo(({categoriesId}) => {
    const dispatch = useDispatch()
 
-   const setCategory = ( value ) => {
+   const setCategory = ( value:number ) => {
       dispatch(categoryReducer(value))
    }
 

@@ -1,17 +1,20 @@
-import React, {useEffect, useRef} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import React, {FC, useEffect, useRef} from 'react';
+import { useSelector} from "react-redux";
 import {useSearchParams, useNavigate} from "react-router-dom";
 import qs from 'qs'
 import {Categories, PizzaBlock, Search, Sort, PizzaSkeleton} from "../components";
-import {selectFilter, setFilter} from "../redux/slices/filterSlice";
+import {FilterSliceState, selectFilter, setFilter} from "../redux/slices/filterSlice";
 import {sortItems} from '../constants/content'
-import {fetchPizzaItems, selectPizza} from "../redux/slices/pizzaSlice";
+import {fetchPizzaItems, Pizza, selectPizza} from "../redux/slices/pizzaSlice";
+import {RootState, useAppDispatch} from "../redux/store";
+import {PizzaItem, SortType} from "../@types/Typs";
 
 
-const Home = () => {
-   const dispatch = useDispatch()
-   const {categoriesId, sort, search} = useSelector(selectFilter)
-   const {pizzas, status} = useSelector(selectPizza)
+const Home:FC = () => {
+   // const dispatch = useDispatch()
+   const dispatch = useAppDispatch()
+   const {categoriesId, sort, search} = useSelector<RootState,FilterSliceState>(selectFilter)
+   const {pizzas, status} = useSelector<RootState,Pizza>(selectPizza)
    const [searchParams, setSearchParams] = useSearchParams();
    const sortType = sort.type;
    const orderType = sort.order;
@@ -22,9 +25,9 @@ const Home = () => {
       const parse = qs.parse(searchParams.toString())
       if (Object.keys(parse).length) {
          dispatch(setFilter({
-            categoriesId: parse.categoriesId,
-            sort: sortItems.find(item => item.type === parse.sortType && item.order === parse.orderType),
-            search: parse.search,
+            categoriesId: Number(parse.categoriesId),
+            sort: sortItems.find(item => item.type === parse.sortType && item.order === parse.orderType) as SortType,
+            search: String(parse.search),
          }))
          isSearching.current = true
       }

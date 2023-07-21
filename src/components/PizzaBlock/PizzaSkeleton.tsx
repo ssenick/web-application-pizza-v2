@@ -1,7 +1,7 @@
-import React from "react"
+import React, {FC} from "react"
 import ContentLoader from "react-content-loader"
 
-const MyLoader = (props) => (
+const MyLoader:FC = () => (
    <ContentLoader
       className='pizza-block'
       speed={0}
@@ -10,7 +10,7 @@ const MyLoader = (props) => (
       viewBox="0 0 280 451"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
-      {...props}
+
    >
       <rect x="188" y="228" rx="0" ry="0" width="20" height="0" />
       <rect x="162" y="404" rx="8" ry="8" width="110" height="45" />
