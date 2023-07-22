@@ -35,7 +35,7 @@ export const cartSlice = createSlice({
          state.totalItems++
 
       },
-      removeItemsGroup: (state:CartSliceType, action) => {
+      removeItemsGroup: (state:CartSliceType, action:PayloadAction<PizzaCartItemAction>) => {
          state.items =  state.items.filter(item =>
            item.id !== action.payload.id
            || item.typeActive !== action.payload.typeActive
@@ -58,7 +58,7 @@ export const cartSlice = createSlice({
          }
 
       },
-      plusCountPizza : (state:CartSliceType, action) => {
+      plusCountPizza : (state:CartSliceType, action:PayloadAction<PizzaCartItemAction>) => {
          const countItems = state.items.find(item =>
             item.id === action.payload.id
             && item.typeActive === action.payload.typeActive

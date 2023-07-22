@@ -14,7 +14,7 @@ const Cart:FC = () => {
    const clearAllItems = () => {
       if (items.length) {
          if (window.confirm('Are you sure?')) {
-            dispatch(clearAllPizzas({} as CartSliceType))
+            dispatch(clearAllPizzas())
          }
       }
    }

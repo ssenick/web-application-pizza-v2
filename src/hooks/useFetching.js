@@ -1,4 +1,5 @@
-import {useState} from "react";
+import {SetStateAction, useState} from "react";
+
 
 
 export function useFetching(callback) {
@@ -8,6 +9,7 @@ export function useFetching(callback) {
    const fetching = async (...args) => {
       try {
          setIsLoading(true)
+
          await callback(...args)
       } catch (e) {
          setError(e)

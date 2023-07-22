@@ -11,8 +11,6 @@ type SortTypeProps ={
 const Sort:FC<SortTypeProps> = memo(({sort}) => {
    const dispatch = useDispatch();
    const [isToggle, setIsToggle] = useState(false);
-
-   console.log(sort)
    const onClick = (arr: SortType) => {
       dispatch(sortReducer(arr))
       setIsToggle(false)

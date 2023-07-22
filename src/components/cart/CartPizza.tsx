@@ -1,14 +1,12 @@
 import React, {FC} from 'react';
 import {useDispatch} from "react-redux";
 import {removeItemsGroup, minusCountPizza, plusCountPizza} from "../../redux/slices/cartSlice";
-import {PizzaCartItem} from "../../@types/Typs";
+import {PizzaCartItem, PizzaCartItemAction} from "../../@types/Typs";
 
 
-
-const CartPizza:FC<PizzaCartItem> = ({id, name, imageUrl, typeActive, sizeActive, countItems, price, itemsPrices}) => {
+const CartPizza: FC<PizzaCartItem> = ({id, name, imageUrl, typeActive, sizeActive, countItems, price, itemsPrices}) => {
     const dispatch = useDispatch();
-    const nowItem =
-        {id, typeActive, sizeActive, countItems, itemsPrices, price}
+    const nowItem = {id, typeActive, sizeActive, countItems, itemsPrices, price}
     const removeItems = () => {
         dispatch(removeItemsGroup(nowItem))
     }
@@ -18,6 +16,8 @@ const CartPizza:FC<PizzaCartItem> = ({id, name, imageUrl, typeActive, sizeActive
     const setPlusItem = () => {
         dispatch(plusCountPizza(nowItem))
     }
+
+
     return (
         <div className="cart__item">
             <div className="cart__item-img">
@@ -32,7 +32,7 @@ const CartPizza:FC<PizzaCartItem> = ({id, name, imageUrl, typeActive, sizeActive
                 <p>{typeActive} dough, {sizeActive} sm.</p>
             </div>
             <div className="cart__item-count">
-                <div onClick={setMinusItem} className="button button--outline button--circle cart__item-count-minus">
+                <button disabled={countItems < 2} onClick={setMinusItem} className="button button--outline button--circle cart__item-count-minus">
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -43,9 +43,9 @@ const CartPizza:FC<PizzaCartItem> = ({id, name, imageUrl, typeActive, sizeActive
                             fill="#EB5A1E"/>
                     </svg>
 
-                </div>
+                </button>
                 <b>{countItems}</b>
-                <div onClick={setPlusItem} className="button button--outline button--circle cart__item-count-plus">
+                <button onClick={setPlusItem} className="button button--outline button--circle cart__item-count-plus">
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -56,7 +56,7 @@ const CartPizza:FC<PizzaCartItem> = ({id, name, imageUrl, typeActive, sizeActive
                             fill="#EB5A1E"/>
                     </svg>
 
-                </div>
+                </button>
             </div>
             <div className="cart__item-price">
                 <b>{itemsPrices} $</b>

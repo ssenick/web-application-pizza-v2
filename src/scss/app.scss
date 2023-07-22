@@ -232,6 +232,13 @@ body {
             display: none;
           }
         }
+        &:disabled{
+          border-color: #dddddd;
+          pointer-events: none;
+         svg path {
+           fill:#dddddd;
+         }
+        }
       }
 
       b {

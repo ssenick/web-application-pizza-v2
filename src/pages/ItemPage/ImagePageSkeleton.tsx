@@ -1,8 +1,8 @@
 
-import React from "react"
+import React, {FC} from "react"
 import ContentLoader from "react-content-loader"
 import './ItemPage.scss'
-const MyLoader = (props) => (
+const MyLoader:FC = () => (
    <ContentLoader className="itemPageSkeleton"
       speed={0}
       width={100}
@@ -10,7 +10,6 @@ const MyLoader = (props) => (
       viewBox="0 0 400 460"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
-      {...props}
    >
       <rect  x="188" y="228" rx="0" ry="0" width="20" height="0" />
       <rect x="279" y="411" rx="8" ry="8" width="110" height="45" />
