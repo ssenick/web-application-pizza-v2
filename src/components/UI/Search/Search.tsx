@@ -1,19 +1,27 @@
-import React, {memo, useRef, useState} from 'react';
+import React, {FC, memo, useEffect, useRef, useState} from 'react';
 import s from './Search.module.scss'
 import {close, search} from "../../../assets/images";
 import {useDispatch} from "react-redux";
 import useDebounce from "../../../hooks/useDebounce";
 import { searchReducer} from "../../../redux/slices/filterSlice";
 
-const Search = memo(() => {
-    const dispatch = useDispatch();
+type SearchTypProps = {
+    valueSearch: string | null
+}
 
+const Search: FC<SearchTypProps> = memo(({valueSearch}) => {
+    const dispatch = useDispatch();
     const [value, setValue] = useState('');
     const [placeholder, setPlaceholder] = useState('Search...');
-
     const debouncedSearch = useDebounce(500)
     const valueRef = useRef<HTMLInputElement | null>(null)
 
+    useEffect(()=>{
+        if(valueSearch){
+            setValue(valueSearch)
+        }
+
+    },[])
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value)
         debouncedSearch(searchReducer(event.target.value))

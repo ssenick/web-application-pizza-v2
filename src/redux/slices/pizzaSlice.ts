@@ -17,6 +17,7 @@ export interface Pizza {
 }
 
 
+
 export const fetchPizzaItems = createAsyncThunk<PizzaItem[],void,{state: RootState }>('items/fetchPizzaItems', async (params, {getState}) => {
     const {filter} = getState()
     const {categoriesId, sort, search} = filter;
