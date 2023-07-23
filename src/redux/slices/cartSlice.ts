@@ -21,7 +21,6 @@ export const getCartFromLS = () => {
     const items = data ? JSON.parse(data) : []
     const totalPrice = calcTotalValue(items).totalPrice
     const totalItems = calcTotalValue(items).countItems
-    console.log(items)
     return {
         items: items as PizzaCartItem[],
         totalPrice,

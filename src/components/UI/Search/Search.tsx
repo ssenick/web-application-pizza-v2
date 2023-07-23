@@ -23,8 +23,9 @@ const Search: FC<SearchTypProps> = memo(({valueSearch}) => {
 
     },[])
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(event.target.value)
-        debouncedSearch(searchReducer(event.target.value))
+        const eventChange = event.target.value
+        setValue(eventChange)
+        debouncedSearch(searchReducer(eventChange))
     }
     const removePlaceholder = (event: React.FocusEvent<HTMLInputElement>) => {
         setPlaceholder('')

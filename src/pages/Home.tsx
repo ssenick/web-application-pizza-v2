@@ -24,7 +24,7 @@ const Home: FC = () => {
     useEffect(() => {
         const parse = qs.parse(searchParams.toString())
         if (Object.keys(parse).length) {
-            // @ts-ignore
+
             dispatch(
                 setFilter({
                     categoriesId: Number(parse.categoriesId),
@@ -38,7 +38,7 @@ const Home: FC = () => {
 
     useEffect(() => {
         if (!isSearching.current) {
-            // @ts-ignore
+
             dispatch(
                 fetchPizzaItems()
             )

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import './ItemPage.scss'
 import {useParams} from "react-router-dom";
 import {fetchPizza} from "../../API";
@@ -8,29 +8,30 @@ import classNames from "classnames";
 import {addPizzasReducer, selectCart} from "../../redux/slices/cartSlice";
 import {useDispatch, useSelector} from "react-redux";
 import ImagePageSkeleton from "./ImagePageSkeleton";
+import {PizzaCartItem, PizzaItem} from "../../@types/Typs";
 
-const ItemPage = () => {
+const ItemPage: FC = () => {
    const dispatch = useDispatch();
    const {id} = useParams();
    const {items} = useSelector(selectCart)
-   const [item, setItem] = useState(undefined);
+   const [item, setItem] = useState({} as PizzaItem);
    const [activeType, setActiveType] = useState(0);
    const [activeSize, setActiveSize] = useState(0);
 
    const count = items.filter(item => item.id === id).reduce((acc, item) => item.countItems + acc, 0)
+
    const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
-      const {data} = await fetchPizza(id);
+      const {data} = await fetchPizza(String(id));
       setItem(data)
       setActiveSize(data.sizes[0])
       setActiveType(data.types[0])
    });
-
    useEffect(() => {
          fetchPosts()
    }, [])
 
    const addItem = () => {
-      const addPizza = {
+      const addPizza:PizzaCartItem  = {
          id: item.id,
          name: item.name,
          imageUrl: item.imageUrl,
@@ -40,14 +41,15 @@ const ItemPage = () => {
          countItems: 1,
          itemsPrices: item.price,
       }
+      // @ts-ignore
       dispatch(addPizzasReducer(addPizza))
    }
 
 
-   const onClickType = (i) => {
+   const onClickType = (i:number) => {
       setActiveType(i)
    }
-   const onClickSize = (size) => {
+   const onClickSize = (size:number) => {
       setActiveSize(size)
    }
 
@@ -58,7 +60,7 @@ const ItemPage = () => {
             <ImagePageSkeleton/>
             :
             <div className="itemPage">
-               {item &&
+               {Object.keys(item).length > 0 &&
                   <div className="pizza-block">
                      <img
                         className="pizza-block__image"
@@ -109,7 +111,7 @@ const ItemPage = () => {
                }
             </div>
          }
-         {postError && <h2 style={{color: 'red', fontSize: '50px'}}>Ups.... Error: <span
+         {postError &&  <h2 style={{color: 'red', fontSize: '50px',textAlign: 'center'}}>Ups.... Error: <span
             style={{fontWeight: '900'}}>{postError.message}</span></h2>}
       </div>
    );

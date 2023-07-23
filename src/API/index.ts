@@ -14,7 +14,7 @@ import {PizzaItem} from "../@types/Typs";
 //       .finally(() => setIsLoaded(true))
 // }
 
-export const fetchPizza = async (id? : string) => {
+export const fetchPizza = async (id : string) => {
   const response = await axios.get<PizzaItem>('https://64a6157600c3559aa9c054f6.mockapi.io/items/' + id )
     return response
 }
