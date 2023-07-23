@@ -48,7 +48,7 @@ const Home: FC = () => {
 
     useEffect(() => {
         if (isMounted.current) {
-            console.log(11)
+
             const stringify = qs.stringify({
                 sortType,
                 orderType,
