@@ -1,11 +1,20 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useRef} from 'react';
 import {pizzaLogo} from "../assets/images";
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {selectCart} from "../redux/slices/cartSlice";
 
 const Header:FC = () => {
-   const { totalPrice, totalItems} = useSelector(selectCart)
+   const { totalPrice, totalItems, items} = useSelector(selectCart)
+   const isMounted = useRef(false)
+   useEffect(()=>{
+     if(isMounted.current){
+        const json = JSON.stringify(items)
+        localStorage.setItem('dataCart', json)
+     }
+     isMounted.current = true
+   },[items])
+
    return (
       <div className="header">
          <div className="container">
