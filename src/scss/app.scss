@@ -57,7 +57,14 @@ body {
 
 .content {
   padding: 40px 0;
-
+ &--loading{
+   display: flex;
+   justify-content:center;
+   align-items: center;
+   img{
+     max-width: 100%;
+   }
+ }
   &__title {
     font-size: 40px;
     margin: 50px 0 40px;

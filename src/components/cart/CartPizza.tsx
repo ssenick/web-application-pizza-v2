@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import {useDispatch} from "react-redux";
 import {removeItemsGroup, minusCountPizza, plusCountPizza} from "../../redux/slices/cartSlice";
 import {PizzaCartItem, PizzaCartItemAction} from "../../@types/Typs";
+import {Link} from "react-router-dom";
 
 
 const CartPizza: FC<PizzaCartItem> = ({id, name, imageUrl, typeActive, sizeActive, countItems, price, itemsPrices}) => {
@@ -19,20 +20,27 @@ const CartPizza: FC<PizzaCartItem> = ({id, name, imageUrl, typeActive, sizeActiv
 
 
     return (
+
         <div className="cart__item">
+
             <div className="cart__item-img">
-                <img
-                    className="pizza-block__image"
-                    src={imageUrl}
-                    alt="Pizza"
-                />
+                <Link to={`/${id}`}>
+                    <img
+                        className="pizza-block__image"
+                        src={imageUrl}
+                        alt="Pizza"
+                    />
+                </Link>
             </div>
             <div className="cart__item-info">
-                <h3>{name}</h3>
+                <Link to={`/${id}`}>
+                    <h3>{name}</h3>
+                </Link>
                 <p>{typeActive} dough, {sizeActive} sm.</p>
             </div>
             <div className="cart__item-count">
-                <button disabled={countItems < 2} onClick={setMinusItem} className="button button--outline button--circle cart__item-count-minus">
+                <button disabled={countItems < 2} onClick={setMinusItem}
+                        className="button button--outline button--circle cart__item-count-minus">
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -45,7 +53,8 @@ const CartPizza: FC<PizzaCartItem> = ({id, name, imageUrl, typeActive, sizeActiv
 
                 </button>
                 <b>{countItems}</b>
-                <button onClick={setPlusItem} className="button button--outline button--circle cart__item-count-plus">
+                <button onClick={setPlusItem}
+                        className="button button--outline button--circle cart__item-count-plus">
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -75,7 +84,8 @@ const CartPizza: FC<PizzaCartItem> = ({id, name, imageUrl, typeActive, sizeActiv
                 </div>
             </div>
         </div>
-    );
+
+);
 };
 
 export default CartPizza;

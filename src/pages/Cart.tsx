@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {useNavigate} from "react-router-dom";
-import {CartEmpty,CartPizza} from "../components";
+import {CartEmpty, CartPizza, Loading} from "../components";
 import {useDispatch, useSelector} from "react-redux";
 import {CartSliceType, clearAllPizzas, selectCart} from "../redux/slices/cartSlice";
 import {RootState} from "../redux/store";
@@ -21,8 +21,10 @@ const Cart:FC = () => {
    if (items.length === 0) {
       return <CartEmpty/>
    }
+
    return (
       <div className="container container--cart">
+
          <div className="cart">
             <div className="cart__top">
                <h2 className="content__title">

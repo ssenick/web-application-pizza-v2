@@ -7,3 +7,4 @@ export {default as plus} from './plus.svg';
 export { default as trash} from './trash.svg'
 export { default as close} from './close.svg'
 export { default as search} from './search.svg'
+export { default as loading} from './loading.gif'
