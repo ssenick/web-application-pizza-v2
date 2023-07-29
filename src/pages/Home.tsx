@@ -27,7 +27,7 @@ const Home: FC = () => {
         rootMargin: '0px',
         threshold: 0
     });
-
+    console.log(inView)
 
     useEffect(() => {
         const parse = qs.parse(searchParams.toString())
@@ -84,7 +84,7 @@ const Home: FC = () => {
 
                 {status.name === 'success' &&
                     pizzas.map(item => (
-                        <PizzaBlock key={item.id} {...item}/>
+                        <PizzaBlock  key={item.id} {...item}/>
                     ))
                 }
 
@@ -96,7 +96,7 @@ const Home: FC = () => {
                 }
                 {status.name === 'error' && <h2 style={{color: 'red', fontSize: '50px'}}>Ups.... Error: <span
                    style={{fontWeight: '900'}}>{status.message}</span></h2>}
-                <div   style={{height: '1px'}}></div>
+                <div  ref={ref} style={{height: '1px'}}></div>
 
             </div>
         </div>
