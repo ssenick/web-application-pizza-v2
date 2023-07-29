@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useRef} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import { useSelector} from "react-redux";
 import {useSearchParams, useNavigate} from "react-router-dom";
 import qs from 'qs'
 import {Categories, PizzaBlock, Search, Sort, PizzaSkeleton} from "../components";
@@ -8,6 +8,7 @@ import {sortItems} from '../constants/content'
 import {fetchPizzaItems, Pizza, selectPizza} from "../redux/slices/pizzaSlice";
 import {RootState, useAppDispatch} from "../redux/store";
 import { SortType} from "../@types/Typs";
+import {useInView} from "react-intersection-observer";
 
 
 const Home: FC = () => {
@@ -21,6 +22,13 @@ const Home: FC = () => {
     const isSearching = useRef(false)
     const isMounted = useRef(false)
     const navigate = useNavigate()
+
+    const {ref,inView,entry} = useInView({
+        rootMargin: '0px',
+        threshold: 0
+    });
+
+
     useEffect(() => {
         const parse = qs.parse(searchParams.toString())
         if (Object.keys(parse).length) {
@@ -34,6 +42,8 @@ const Home: FC = () => {
             isSearching.current = true
         }
     }, [])
+
+
 
 
     useEffect(() => {
@@ -63,19 +73,21 @@ const Home: FC = () => {
 
 
     return (
-        <div className="container">
+        <div  className="container">
             <div className="content__top">
                 <Categories categoriesId={categoriesId}/>
                 <Search valueSearch={search}/>
                 <Sort sort={sort}/>
             </div>
             <h2 className="content__title">All pizzas</h2>
-            <div className="content__items">
+            <div   className="content__items">
+
                 {status.name === 'success' &&
                     pizzas.map(item => (
                         <PizzaBlock key={item.id} {...item}/>
                     ))
                 }
+
                 {status.name === 'loading' &&
                     new Array(6).fill('').map((_, i) => < PizzaSkeleton key={i}/>)
                 }
@@ -84,6 +96,8 @@ const Home: FC = () => {
                 }
                 {status.name === 'error' && <h2 style={{color: 'red', fontSize: '50px'}}>Ups.... Error: <span
                    style={{fontWeight: '900'}}>{status.message}</span></h2>}
+                <div   style={{height: '1px'}}></div>
+
             </div>
         </div>
     );
