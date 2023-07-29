@@ -4,11 +4,14 @@ import classNames from "classnames";
 import {useDispatch, useSelector} from "react-redux";
 import {addPizzasReducer, selectCart} from "../../redux/slices/cartSlice";
 import {Link} from "react-router-dom";
+import {readFile} from "fs";
+import {useInView} from "react-intersection-observer";
 
 
 interface PizzaBlockProps {
    id : string, name:string, imageUrl:string, price:number, types:number[], sizes:number[]
 }
+
 
 const PizzaBlock:FC<PizzaBlockProps> = ({id, name, imageUrl, price, types, sizes}) => {
    const dispatch = useDispatch();
@@ -38,7 +41,7 @@ const PizzaBlock:FC<PizzaBlockProps> = ({id, name, imageUrl, price, types, sizes
       setActiveSize(size)
    }
    return (
-      <div  className="pizza-block">
+      <div   className="pizza-block">
          <Link  to={`${id}`} className="pizza-block__link">
             <img
                className="pizza-block__image"
@@ -91,3 +94,4 @@ const PizzaBlock:FC<PizzaBlockProps> = ({id, name, imageUrl, price, types, sizes
 };
 
 export default PizzaBlock;
+

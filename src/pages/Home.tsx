@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useRef} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import { useSelector} from "react-redux";
 import {useSearchParams, useNavigate} from "react-router-dom";
 import qs from 'qs'
@@ -23,11 +23,8 @@ const Home: FC = () => {
     const isMounted = useRef(false)
     const navigate = useNavigate()
 
-    const {ref,inView,entry} = useInView({
-        rootMargin: '0px',
-        threshold: 0
-    });
-    console.log(inView)
+
+
 
     useEffect(() => {
         const parse = qs.parse(searchParams.toString())
@@ -42,7 +39,6 @@ const Home: FC = () => {
             isSearching.current = true
         }
     }, [])
-
 
 
 
@@ -84,7 +80,7 @@ const Home: FC = () => {
 
                 {status.name === 'success' &&
                     pizzas.map(item => (
-                        <PizzaBlock  key={item.id} {...item}/>
+                        <PizzaBlock   key={item.id} {...item}/>
                     ))
                 }
 
@@ -96,7 +92,7 @@ const Home: FC = () => {
                 }
                 {status.name === 'error' && <h2 style={{color: 'red', fontSize: '50px'}}>Ups.... Error: <span
                    style={{fontWeight: '900'}}>{status.message}</span></h2>}
-                <div  ref={ref} style={{height: '1px'}}></div>
+                <div   style={{height: '1px'}}></div>
 
             </div>
         </div>
