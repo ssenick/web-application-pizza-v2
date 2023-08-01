@@ -17,13 +17,14 @@ export interface Pizza {
 }
 
 
-
 export const fetchPizzaItems = createAsyncThunk<PizzaItem[],void,{state: RootState }>('items/fetchPizzaItems', async (params, {getState}) => {
     const {filter} = getState()
     const {categoriesId, sort, search} = filter;
     const category = categoriesId === 0 ? '' : `&category=${categoriesId}`;
     const sortType = `?sortBy=${sort.type}&order=${sort.order}`;
     const searchValue = search ? `&name=${search}` : '';
+
+
     const {data} = await axios.get<PizzaItem[]>(`https://64a6157600c3559aa9c054f6.mockapi.io/items${sortType}${searchValue}${category}`);
 
     return data

@@ -10,7 +10,7 @@ export function useFetching(callback : () => void) {
       try {
          setIsLoading(true)
          await callback()
-      } catch (e: any | string) {
+      } catch (e: any ) {
          setError(e)
       } finally {
          setIsLoading(false)

@@ -14,7 +14,7 @@ const Search: FC<SearchTypProps> = memo(({valueSearch}) => {
     const [value, setValue] = useState('');
     const [placeholder, setPlaceholder] = useState('Search...');
     const debouncedSearch = useDebounce(500)
-    const valueRef = useRef<HTMLInputElement | null>(null)
+    const valueRef = useRef<HTMLInputElement>(null!)
 
     useEffect(()=>{
         if(valueSearch){
