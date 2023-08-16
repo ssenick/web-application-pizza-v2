@@ -17,3 +17,5 @@ DEMO: http://web-application-react-v2.ssenick.fun/
 - React Content Loader (skeleton)
 - Lodash.Debounce
 - Code Splitting, React Loadable, useWhyDidYouUpdate
+
+![Screenshot](https://github.com/ssenick/web-application-pizza-v2/blob/main/pizzaImage.png)
