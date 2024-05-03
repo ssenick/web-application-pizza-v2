@@ -1,0 +1,64 @@
+.modal {
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .body {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 350px;
+    padding: 20px;
+    background-color: #FFDF8CFF;
+    border-radius: 10px;
+  }
+
+  .form {
+    display: grid;
+    width: 100%;
+    gap: 15px;
+  }
+
+  .input {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #fdbe29;
+
+    &:focus {
+      border: 1px solid #ffb300;
+    }
+  }
+
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FE5F1EFF;
+    border-radius: 15px;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    border: 1px solid transparent;
+    color: white;
+    gap: 3px;
+
+    &:hover {
+      border: 1px solid #FE5F1EFF;
+      color: #FE5F1EFF;
+      background-color: rgba(255, 255, 255, 0.51);
+    }
+  }
+}

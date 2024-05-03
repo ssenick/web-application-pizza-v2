@@ -11,7 +11,6 @@ const ItemPage = lazy(() => import('./pages/ItemPage/ItemPage'));
 function App() {
     return (
         <div className="App">
-
             <Routes>
                 <Route path="/" element={<Layout/>}>
                     <Route index element={<Home/>}/>

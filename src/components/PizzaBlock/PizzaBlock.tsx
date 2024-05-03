@@ -4,8 +4,9 @@ import classNames from "classnames";
 import {useDispatch, useSelector} from "react-redux";
 import {addPizzasReducer, selectCart} from "../../redux/slices/cartSlice";
 import {Link} from "react-router-dom";
-import {readFile} from "fs";
-import {useInView} from "react-intersection-observer";
+import {emptyCart} from '../../assets/images'
+import {pizza} from '../../assets/images'
+import {AppImage} from "../AppImage/AppImage";
 
 
 interface PizzaBlockProps {
@@ -43,11 +44,13 @@ const PizzaBlock:FC<PizzaBlockProps> = ({id, name, imageUrl, price, types, sizes
    return (
       <div   className="pizza-block">
          <Link  to={`${id}`} className="pizza-block__link">
-            <img
-               className="pizza-block__image"
-               src={imageUrl}
-               alt="Pizza"
-            />
+            <AppImage  className="pizza-block__image"  src={imageUrl}  errorFallback={
+               <img
+                   className="pizza-block__image"
+                   src={pizza}
+                   alt="Pizza"
+               />
+            }/>
             <h4 className="pizza-block__title">{name}</h4>
          </Link>
 

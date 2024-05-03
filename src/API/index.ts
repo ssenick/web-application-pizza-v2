@@ -1,5 +1,6 @@
 import axios from "axios";
 import {PizzaItem} from "../@types/Typs";
+import {CartSliceType} from "../redux/slices/cartSlice";
 
 // логика перенесена  в редакс
 
