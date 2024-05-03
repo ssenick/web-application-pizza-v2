@@ -43,7 +43,7 @@ const PizzaBlock:FC<PizzaBlockProps> = ({id, name, imageUrl, price, types, sizes
    return (
       <div   className="pizza-block">
          <Link  to={`${id}`} className="pizza-block__link">
-            <AppImage  className="pizza-block__image"  src={imageUrl}
+            <AppImage  className="pizza-block__image"  src={imageUrl} alt="Pizza"
                        fallback={<div className="pizza-block__skeleton"><span></span></div>} errorFallback={
                <img
                    className="pizza-block__image"

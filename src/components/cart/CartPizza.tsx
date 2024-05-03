@@ -3,7 +3,8 @@ import {useDispatch} from "react-redux";
 import {removeItemsGroup, minusCountPizza, plusCountPizza} from "../../redux/slices/cartSlice";
 import {PizzaCartItem, PizzaCartItemAction} from "../../@types/Typs";
 import {Link} from "react-router-dom";
-
+import {AppImage} from "../AppImage/AppImage";
+import {pizza} from '../../assets/images'
 
 const CartPizza: FC<PizzaCartItem> = ({id, name, imageUrl, typeActive, sizeActive, countItems, price, itemsPrices}) => {
     const dispatch = useDispatch();
@@ -25,11 +26,14 @@ const CartPizza: FC<PizzaCartItem> = ({id, name, imageUrl, typeActive, sizeActiv
 
             <div className="cart__item-img">
                 <Link to={`/${id}`}>
-                    <img
-                        className="pizza-block__image"
-                        src={imageUrl}
-                        alt="Pizza"
-                    />
+                    <AppImage  className="pizza-block__image"  src={imageUrl} alt="Pizza"
+                               fallback={<div className="pizza-block__skeleton"><span></span></div>} errorFallback={
+                        <img
+                            className="pizza-block__image"
+                            src={pizza}
+                            alt="Pizza"
+                        />
+                    }/>
                 </Link>
             </div>
             <div className="cart__item-info">

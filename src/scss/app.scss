@@ -197,11 +197,22 @@ body {
       align-items: center;
       flex: 0 1 80px;
 
-      img {
+      .pizza-block__image {
         width: 80px;
         height: 80px;
+        min-height: auto;
+        object-fit: cover;
       }
-
+      .pizza-block__skeleton{
+        min-width: auto;
+        min-height: auto;
+        flex: 0 1 80px;
+        span{
+          flex: 0 1 80px;
+          width: 80px;
+          height: 80px;
+        }
+      }
       @media (max-width: 850px) {
         justify-content: center;
       }

@@ -9,7 +9,8 @@ import {addPizzasReducer, selectCart} from "../../redux/slices/cartSlice";
 import {useDispatch, useSelector} from "react-redux";
 import ImagePageSkeleton from "./ImagePageSkeleton";
 import {PizzaCartItem, PizzaItem} from "../../@types/Typs";
-
+import {AppImage} from "../../components/AppImage/AppImage";
+import {pizza} from '../../assets/images'
 const ItemPage: FC = () => {
    const dispatch = useDispatch();
    const {id} = useParams();
@@ -62,11 +63,14 @@ const ItemPage: FC = () => {
             <div className="itemPage">
                {Object.keys(item).length > 0 &&
                   <div className="pizza-block">
-                     <img
-                        className="pizza-block__image"
-                        src={item.imageUrl}
-                        alt="Pizza"
-                     />
+                     <AppImage  className="pizza-block__image"  src={item.imageUrl} alt="Pizza"
+                                fallback={<div className="pizza-block__skeleton"><span></span></div>} errorFallback={
+                        <img
+                            className="pizza-block__image"
+                            src={pizza}
+                            alt="Pizza"
+                        />
+                     }/>
                      <h4 className="pizza-block__title">{item.name}</h4>
                      <p className='pizza-block__desc'>Description: {item.description}</p>
                      <div className="pizza-block__selector">
